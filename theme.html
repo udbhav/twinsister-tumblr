@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Twin Sister Tumblr</title>
+    <!--[if IE]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    {block:Description}
+    <meta name="description" content="{MetaDescription}" />
+    {/block:Description}
+	  <link rel="stylesheet" media="all" href="http://twinsistermusic.com/media/css/reset.css" />
+	  <link rel="stylesheet" media="all" href="http://twinsistermusic.com/media/css/style.css" />
+    <style type="text/css">
+      h1.tag_header { width: 700px; font-size: 25px; margin: 0 auto 40px; font-family: 'AvantGardeBkBTDemi', Helvetica, Arial; }
+      nav li { font-size: 24px; }
+      body.tumblr > header { margin-bottom: 50px; }
+      body.tumblr .content { float: none; width: 100%; }
+      body.tumblr article { width: 700px; margin: 0 auto 60px; }
+      body.tumblr article .copy { font-size: 14px; line-height: 1.4em; }
+      body.tumblr article .date {
+        float: right;
+        color: #ccc;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        position: absolute;
+        bottom: 7px;
+        right: 0;
+      }
+      body.tumblr article .date:hover { color: black; }
+      body.tumblr article header { position: relative; min-height: 20px; }
+      body.tumblr article.photo .media { text-align: center; }
+      body.tumblr article .media img { max-width: 100%; }
+      body.tumblr article .copy { margin-top: 20px; }
+      body.tumblr article.link .media a { font-family: AvantGardeBkBTDemi, Helvetica, Arial; font-size: 25px; }
+      body.tumblr article.quote .media { font-size: 18px; line-height: 1.5em;}
+      body.tumblr ol.notes li { margin-bottom: 10px; line-height: 1.5em;}
+    </style>
+  </head>
+
+  <body class="tumblr">
+    <header class="clearfix">
+      <nav>
+        <ul>
+          <li><a href="/music/releases/">Discography</a></li>
+          <li><a href="/shows/">Shows</a></li>
+          <li><a href="/images/">Media</a></li>
+          <li class="active">
+            <a href="http://tumblr.twinsistermusic.com">Tumblr</a>
+          </li>
+        </ul>
+      </nav>
+
+      <h1 id="logo"><a href="http://twinsistermusic.com">Twin Sister</a></h1>
+    </header>
+
+    <div class="content">
+      {block:TagPage}<h1 class="tag_header">Posts tagged "{Tag}"</h1>{/block:TagPage}
+      {block:Posts}
+      <article class="{PostType}">
+        <header class="clearfix">
+          {block:Date}
+          <a class="date" href="{Permalink}">
+            {ShortMonth} {DayOfMonth}, {Year}
+          </a>
+          {/block:Date}
+          {block:Title}<h1><a href="{Permalink}">{Title}</a></h1>{/block:Title}
+        </header>
+        <div class="media">
+          {block:Photo}
+          {LinkOpenTag}
+          <img src="{PhotoURL-HighRes}" alt="{PlaintextCaption}" />
+          {LinkCloseTag}
+          {/block:Photo}
+
+          {block:Photoset}
+          {Photoset-700}
+          {/block:Photoset}
+
+          {block:Video}
+          {Video-700}
+          {/block:Video}
+
+          {block:Audio}
+          {block:AudioEmbed}
+          {AudioEmbed-640}
+          {/block:AudioEmbed}
+          {block:AudioPlayer}
+          {AudioPlayerBlack}
+          {/block:AudioPlayer}
+          {/block:Audio}
+
+          {block:Quote}{Quote}{/block:Quote}
+
+          {block:Link}<a href="{URL}" {Target}>{Name}</a>{/block:Link}
+
+          {block:Answer}
+          {Question}
+          <div class="asker">{Asker}</div>
+          {/block:Answer}
+        </div>
+        <div class="copy">
+
+          {Body}{Caption}
+
+          {block:Quote}
+          {block:Source}
+          <div class="source">{Source}</div>
+          {/block:Source}
+          {/block:Quote}
+
+          {block:Link}{Description}{/block:Link}
+
+          {block:Answer}{Answer}{/block:Answer}
+
+          {block:Chat}
+          <ul class="chat">
+            {block:Lines}
+            <li class="{Alt} user_{UserNumber}">
+              {block:Label}
+              <span class="label">{Label}</span>
+              {/block:Label}
+              {Line}
+            </li>
+            {/block:Lines}
+          </ul>
+          {/block:Chat}
+
+        </div>
+
+        {block:HasTags}<div class="tags">
+          {block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}
+        </div>{/block:HasTags}
+
+        {block:PostNotes}
+        {PostNotes}
+        {/block:PostNotes}
+
+      </article>
+      {/block:Posts}
+    </div>
+
+
+    <div class="pagination">
+      {block:PreviousPage}
+      <a href="{PreviousPage}" class="previous">Previous</a>
+      {/block:PreviousPage}
+
+      {block:NextPage}
+      <a href="{NextPage}" class="next">Next &#187;</a>
+      {/block:NextPage}
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://static.tumblr.com/1qmtld7/xYDmksq1h/jquery.infinitescroll.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(".content").infinitescroll({
+          loading: { finishedMsg: "<em>No more posts!</em>" },
+          nextSelector: ".pagination .next",
+          navSelector: ".pagination",
+          itemSelector: "article"
+        });
+      });
+    </script>
+  </body>
+</html>
